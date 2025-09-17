@@ -1,11 +1,11 @@
 @extends('templates.base')
-@section('title', 'Observaciones')
-@section('header', 'Observaciones')
+@section('title', 'Órdenes')
+@section('header', 'Órdenes')
 @section('content')    
 
     <div class="row">
         <div class="col-lg-12 mb-4 d-grid gap-2 d-md-block">
-            <a href="{{ route('observation.create') }}" class="btn btn-primary">Crear</a>
+            <a href="{{ route('order.create') }}" class="btn btn-primary">Crear</a>
         </div>
     </div>
 
@@ -17,20 +17,28 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Descripción</th>
+                        <th>Fecha legalización</th>
+                        <th>Dirección</th>
+                        <th>Ciudad</th>
+                        <th>Causal</th>
+                        <th>Observación</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($observations as $observation)
+                    @foreach ($orders as $order)
                         <tr>
-                            <td>{{ $observation['id'] }}</td>
-                            <td>{{ $observation['description'] }}</td>
+                            <td>{{ $order['id'] }}</td>
+                            <td>{{ $order['legalization_date'] }}</td>
+                            <td>{{ $order['address'] }}</td>
+                            <td>{{ $order['city'] }}</td>
+                            <td>{{ $order['causal']['description'] }}</td>
+                            <td>@if($order['observation']) {{ $order['observation']['description'] }} @endif</td>
                             <td>
-                                <a href="{{ route('observation.edit', $observation['id']) }}" class="btn btn-primary btn-circle btn-sm" title="Editar">
+                                <a href="{{ route('order.edit', $order['id']) }}" class="btn btn-primary btn-circle btn-sm" title="Editar">
                                     <i class="far fa-edit"></i>
                                 </a>
-                                <a href="{{ route('observation.destroy', $observation['id']) }}" class="btn btn-danger btn-circle btn-sm" title="Eliminar" 
+                                <a href="{{ route('order.destroy', $order['id']) }}" class="btn btn-danger btn-circle btn-sm" title="Eliminar" 
                                     onclick="return remove();">
                                     <i class="fas fa-trash"></i>
                                 </a>

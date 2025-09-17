@@ -28,9 +28,6 @@ Route::get('/index', function () {
     return view('index');
 })->name('index');
 
-/* Route::get('/test2', function () {
-    return view('test2');
-})->name('test2'); */
 
 Route::prefix('auth')->group(function(){
     Route::get('/index', [AuthController::class, 'index'])->name('auth.index');
@@ -51,8 +48,6 @@ Route::prefix('causal')->group(function(){
     Route::put('/update/{id}', [CausalController::class, 'update'])->name('causal.update');
     Route::get('/destroy/{id}', [CausalController::class, 'destroy'])->name('causal.destroy');
 });
-
-
 
 Route::prefix('observation')->group(function(){
     Route::get('/index', [ObservationController::class, 'index'])->name('observation.index');
@@ -104,15 +99,11 @@ Route::prefix('order')->group(function(){
 Route::prefix('reports')->group(function(){
     Route::get('/index', [ReportController::class, 'index'])->name('reports.index');
     Route::get('/export_technicians', [ReportController::class, 'export_technicians'])->name('reports.technicians');
-    Route::post('/export_activities_by_technician', [ReportController::class, 'export_activities_by_technician'])
-                                                                            ->name('reports.activities_technician');
-     Route::post('/export_orders_by_date_range', [ReportController::class, 'export_orders_by_date_range'])->name('reports.orders_date');                                                                   
+    Route::post('/export_activities_by_technician', [ReportController::class, 'export_activities_by_technician'])->name('reports.activities_technician');
+    Route::post('/export_orders_by_date_range', [ReportController::class, 'export_orders_by_date_range'])->name('reports.orders_date');
 });
 
 Route::prefix('users')->group(function(){
     Route::get('/index', [UsersController::class, 'index'])->name('users.index');
-    Route::post('/send_email', [UsersController::class, 'send_email'])->name('users.send_email');                                                           
+    Route::post('/send_email', [UsersController::class, 'send_email'])->name('users.send_email');
 });
-
-
-
